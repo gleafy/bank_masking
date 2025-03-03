@@ -3,8 +3,10 @@
 Содержит функции для маскировки номеров банковских карт и счетов.
 """
 
+from typing import Union
 
-def get_mask_card_number(card_number: int) -> str:
+
+def get_mask_card_number(card_number: Union[int, str]) -> str:
     """
     Принимает номер карты в виде целого числа и возвращает маску номера в формате:
     XXXX XX** **** XXXX.
