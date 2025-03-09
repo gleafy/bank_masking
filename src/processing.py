@@ -3,8 +3,8 @@
 Содержит функции для обработки данных о банковских операциях.
 """
 
-from typing import List, Dict, Any
 from datetime import datetime
+from typing import Any, Dict, List
 
 
 def filter_by_state(transactions: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
@@ -26,8 +26,4 @@ def sort_by_date(transactions: List[Dict[str, Any]], reverse: bool = True) -> Li
     :param reverse: Если True, сортирует по убыванию.
     :return: Отсортированный список.
     """
-    return sorted(
-        transactions,
-        key=lambda x: datetime.fromisoformat(x.get("date", "")),
-        reverse=reverse
-    )
+    return sorted(transactions, key=lambda x: datetime.fromisoformat(x.get("date", "")), reverse=reverse)
