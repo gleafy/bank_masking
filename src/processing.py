@@ -9,22 +9,22 @@ from datetime import datetime
 
 def filter_by_state(transactions: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """
-    Фильтрует список словарей с банковскими операциями по значению ключа 'state'.
+    Оставляет операции с указанным state.
 
-    :param transactions: Список словарей с данными операций.
-    :param state: Значение для ключа 'state', по которому производится фильтрация (по умолчанию "EXECUTED").
-    :return: Новый список словарей, содержащий только те операции, у которых значение ключа 'state' равно переданному state.
+    :param transactions: Список операций.
+    :param state: Значение для фильтрации (по умолчанию "EXECUTED").
+    :return: Отфильтрованный список операций.
     """
     return [transaction for transaction in transactions if transaction.get("state") == state]
 
 
 def sort_by_date(transactions: List[Dict[str, Any]], reverse: bool = True) -> List[Dict[str, Any]]:
     """
-    Сортирует список словарей с банковскими операциями по дате.
+    Сортирует операции по дате.
 
-    :param transactions: Список словарей, где каждый словарь содержит ключ 'date' в формате ISO.
-    :param reverse: Логический флаг, задающий порядок сортировки. По умолчанию True (сортировка по убыванию, сначала самые новые операции).
-    :return: Новый список словарей, отсортированный по дате.
+    :param transactions: Список операций с ключом "date".
+    :param reverse: Если True, сортирует по убыванию.
+    :return: Отсортированный список.
     """
     return sorted(
         transactions,
