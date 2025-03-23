@@ -1,3 +1,6 @@
 [flake8]
 max-line-length = 119
 exclude = .git,__pycache__
+
+#https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#slices
+ignore = E203
