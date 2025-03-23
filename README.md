@@ -118,12 +118,88 @@ print(sorted_ops)
 # Вывод: операции, отсортированные по дате (сначала самые новые)
 ```
 
+### Работа с генераторами
+
+Модуль `src/generators.py` содержит функции для работы с генераторами.
+
+#### Фильтрация транзакций по валюте
+
+Функция `filter_by_currency` возвращает итератор транзакций с заданной валютой:
+
+```python
+from src.generators import filter_by_currency
+
+transactions = [
+    {
+        "operationAmount": {
+            "currency": {"code": "USD"}
+        }
+    },
+    {
+        "operationAmount": {
+            "currency": {"code": "EUR"}
+        }
+    },
+    {
+        "operationAmount": {
+            "currency": {"code": "USD"}
+        }
+    },
+]
+
+usd_transactions = filter_by_currency(transactions, "USD")
+for transaction in usd_transactions:
+    print(transaction)
+# Вывод: транзакции с валютой "USD"
+```
+
+#### Получение описаний транзакций
+
+Функция `transaction_descriptions` возвращает итератор описаний транзакций:
+
+```python
+from src.generators import transaction_descriptions
+
+transactions = [
+    {"description": "Перевод организации"},
+    {"description": "Перевод со счета на счет"},
+]
+
+descriptions = transaction_descriptions(transactions)
+for desc in descriptions:
+    print(desc)
+# Вывод: "Перевод организации", "Перевод со счета на счет"
+```
+
+#### Генерация номеров карт
+
+Функция `card_number_generator` генерирует номера карт в заданном диапазоне:
+
+```python
+from src.generators import card_number_generator
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+# Вывод:
+# 0000 0000 0000 0001
+# 0000 0000 0000 0002
+# 0000 0000 0000 0003
+# 0000 0000 0000 0004
+# 0000 0000 0000 0005
+```
+
+
 ## Тестирование
 
 В проекте используется `pytest` для тестирования.  
 Запуск тестов:
 ```bash
 poetry run pytest
+```
+
+Для проверки покрытия кода тестами:
+```bash
+poetry run pytest --cov=src --cov-report=html
 ```
 
 ## Документация и ссылки
@@ -133,6 +209,7 @@ poetry run pytest
   - `src/masks.py`
   - `src/widget.py`
   - `src/processing.py`
+  - `src/generators.py`
 
 - **Инструменты и ресурсы:**  
   - [Poetry](https://python-poetry.org/)
