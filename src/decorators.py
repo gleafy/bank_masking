@@ -3,9 +3,9 @@
 Содержит декораторы для логирования функций.
 """
 
-from typing import Callable, Any, Optional
-from functools import wraps
 from datetime import datetime
+from functools import wraps
+from typing import Any, Callable, Optional
 
 
 def log(filename: Optional[str] = None) -> Callable:
@@ -20,9 +20,7 @@ def log(filename: Optional[str] = None) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            log_message = (
-                f"{start_time} - Вызов функции {func.__name__} с аргументами: {args}, {kwargs}\n"
-            )
+            log_message = f"{start_time} - Вызов функции {func.__name__} с аргументами: {args}, {kwargs}\n"
             result = None
             error = None
 
@@ -35,9 +33,7 @@ def log(filename: Optional[str] = None) -> Callable:
                 raise
             finally:
                 full_log = (
-                    f"{log_message}"
-                    f"{start_time} - Результат: {status}"
-                    f"{f'. Ошибка: {error}' if error else ''}\n"
+                    f"{log_message}" f"{start_time} - Результат: {status}" f"{f'. Ошибка: {error}' if error else ''}\n"
                 )
 
                 if filename:
