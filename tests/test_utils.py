@@ -1,6 +1,7 @@
 from pathlib import Path
+from typing import Any, Dict, List
+
 from src.utils import read_json
-from typing import List, Dict, Any
 
 
 def test_read_json_valid_file(tmp_path: Path) -> None:

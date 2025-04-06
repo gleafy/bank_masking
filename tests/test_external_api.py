@@ -1,7 +1,9 @@
-from unittest.mock import patch, Mock
+from typing import Any, Dict
+from unittest.mock import Mock, patch
+
 import pytest
+
 from src.external_api import convert_currency
-from typing import Dict, Any
 
 
 @patch.dict("os.environ", {"EXCHANGE_API_KEY": "test_key"})

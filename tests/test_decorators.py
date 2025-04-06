@@ -29,13 +29,13 @@ def test_log_to_console(capsys: pytest.CaptureFixture) -> None:
 
 def test_log_to_file() -> None:
     sample_function_file(2, 3)
-    
+
     with open("test_log.txt", "r", encoding="utf-8") as file:
         content = file.read()
-    
+
     if os.path.exists("test_log.txt"):
         os.remove("test_log.txt")
-    
+
     assert "sample_function_file" in content
 
 

@@ -4,9 +4,10 @@
 """
 
 import os
+from typing import Any, Dict, Optional
+
 import requests
 from dotenv import load_dotenv
-from typing import Dict, Optional, Any
 
 load_dotenv()
 
