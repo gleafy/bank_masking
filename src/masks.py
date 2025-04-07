@@ -17,6 +17,7 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
+
 def get_mask_card_number(card_number: Union[int, str]) -> str:
     """
     Принимает номер карты в виде целого числа и возвращает маску номера в формате:
@@ -26,7 +27,7 @@ def get_mask_card_number(card_number: Union[int, str]) -> str:
     if len(s) != 16:
         logger.error(f"Некорректная длина номера карты: {card_number}")
         return "Некорректный номер карты"
-    
+
     group1 = s[0:4]
     group2 = s[4:6] + "**"
     group3 = "****"
@@ -44,6 +45,6 @@ def get_mask_account(account_number: int) -> str:
     if len(s) < 4:
         logger.error(f"Некорректный номер счета: {account_number}")
         return "Некорректный номер счета"
-    
+
     logger.info(f"Успешно замаскирован номер счета: {account_number}")
     return "**" + s[-4:]

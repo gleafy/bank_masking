@@ -18,6 +18,7 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
+
 def read_json(file_path: str) -> List[Dict[str, Any]]:
     """
     Читает JSON-файл и возвращает список транзакций.
