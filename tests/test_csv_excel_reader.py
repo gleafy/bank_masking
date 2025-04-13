@@ -1,5 +1,6 @@
-from unittest.mock import mock_open, patch
 from typing import Any
+from unittest.mock import mock_open, patch
+
 import pandas as pd
 
 from src.csv_excel_reader import read_csv, read_excel
@@ -14,11 +15,13 @@ EXCEL_DATA = [
     {"id": 2, "amount": 200, "currency": "EUR"},
 ]
 
+
 def test_read_csv() -> None:
     with patch("builtins.open", mock_open(read_data=CSV_DATA)):
         result = read_csv("dummy.csv")
         assert len(result) == 2
         assert result[0]["id"] == "1"
+
 
 @patch("pandas.read_excel")
 def test_read_excel(mock_read: Any) -> None:
