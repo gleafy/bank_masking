@@ -44,9 +44,12 @@ def read_csv(file_path: str) -> List[Dict[str, Any]]:
 def read_excel(file_path: str) -> List[Dict[str, Any]]:
     """
     Читает Excel-файл и возвращает список транзакций.
+    :param file_path:
+    :return: Список словарей с транзакциями. Если файл не найден или поврежден, возвращает пустой список.
     """
     try:
-        df = pd.read_excel(file_path)
+        # pandas по дефолту интерепретирует пустые столбцы как NaN, а NaN — float и ломает логику widget.py
+        df = pd.read_excel(file_path, keep_default_na=False)
         transactions = []
         for item in df.to_dict("records"):
             new_dict = {}
