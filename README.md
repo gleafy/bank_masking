@@ -233,6 +233,55 @@ except ValueError:
 # 2024-03-15 14:35:00 - Результат: Ошибка. Ошибка: Тестовая ошибка
 ```
 
+### Чтение CSV и Excel файлов
+
+Функции реализованы в модуле `src/csv_excel_reader.py`.
+
+Пример чтения CSV:
+```python
+from src.csv_excel_reader import read_csv
+
+transactions = read_csv("transactions.csv")
+print(transactions)
+```
+
+Пример чтения Excel:
+```python
+from src.csv_excel_reader import read_excel
+
+transactions = read_excel("transactions_excel.xlsx")
+print(transactions)
+```
+
+### Поиск транзакций по описанию
+Функция `search_by_description` из модуля `src/processing.py` позволяет искать транзакции по ключевому слову в описании:
+```python
+from src.processing import search_by_description
+
+transactions = [...]  # Список транзакций
+result = search_by_description(transactions, "Перевод")
+print(result)  # Все транзакции с "Перевод" в описании
+```
+
+### Подсчёт категорий операций
+Функция `count_categories` из модуля `src/processing.py` возвращает количество операций для заданных категорий:
+```python
+from src.processing import count_categories
+
+transactions = [...]  # Список транзакций
+categories = ["Перевод", "Покупка"]
+result = count_categories(transactions, categories)
+print(result)  # {"Перевод": 5, "Покупка": 3}
+```
+
+### Запуск основной программы
+
+Для взаимодействия с программой через консоль используйте:
+```bash
+poetry run python src/main.py
+```
+Программа предложит выбрать источник данных, статус операций, сортировку и другие параметры.
+
 ## Тестирование
 
 В проекте используется `pytest` для тестирования.  
