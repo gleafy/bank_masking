@@ -2,6 +2,7 @@
 Модуль processing.
 Содержит функции для обработки данных о банковских операциях.
 """
+
 import re
 from collections import Counter
 from datetime import datetime
@@ -29,6 +30,7 @@ def sort_by_date(transactions: List[Dict[str, Any]], reverse: bool = True) -> Li
     """
     return sorted(transactions, key=lambda x: datetime.fromisoformat(x.get("date", "")), reverse=reverse)
 
+
 def search_by_description(transactions: List[Dict[str, Any]], search_string: str) -> List[Dict[str, Any]]:
     """
     Ищет транзакции, в описании которых встречается заданная строка (без учёта регистра).
@@ -39,6 +41,7 @@ def search_by_description(transactions: List[Dict[str, Any]], search_string: str
     """
     pattern = re.compile(re.escape(search_string), re.IGNORECASE)
     return [t for t in transactions if pattern.search(t.get("description", ""))]
+
 
 def count_categories(transactions: List[Dict[str, Any]], categories: List[str]) -> Dict[str, int]:
     """

@@ -2,12 +2,15 @@
 Модуль main.
 Содержит основную логику взаимодействия с пользователем.
 """
+
 from typing import Any, Dict, List, Optional
+
 from src.csv_excel_reader import read_csv, read_excel
 from src.generators import filter_by_currency
 from src.processing import filter_by_state, search_by_description, sort_by_date
 from src.utils import read_json
 from src.widget import get_date, mask_account_card
+
 
 def get_valid_input(prompt: str, valid_choices: Optional[list[str]] = None) -> str:
     """
@@ -34,6 +37,7 @@ def get_valid_input(prompt: str, valid_choices: Optional[list[str]] = None) -> s
             else:
                 print(f'Выбран неверный вариант "{user_input}".')
                 print(f"Доступные варианты: {', '.join(valid_choices)}")
+
 
 def main() -> None:
     """
